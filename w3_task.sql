@@ -117,4 +117,31 @@ WHERE Payment > (SELECT AVG(Payment) FROM Booking);
 
 
 
+
+
+-- View for Query 1
 SELECT * FROM Q1;
+
+
+
+
+
+-- Test Queries
+-- Q1
+SELECT COUNT(*) AS 'Column Count' FROM Booking;
+-- As the job of query 1 is to show a lot of information (and at least one piece from each table) 
+-- this query checks the table that used the most information (Booking) and checks how many rows it has.
+-- If the number is larger than the amount shown in query 1, then query 1 isnt showing enough rows and needs to be modified
+-- If the number is smaller than the amount shown in query 1, then query 1 is showing too many rows and duplicates are probabaly being created
+
+
+-- Q2
+SELECT * FROM Booking
+ORDER BY EventMonth DESC, TourName ASC;
+-- Since query 2 is seeing how many bookings there are for certain events, looking at all of the bookings
+-- and manually counting how many of each there are with the same tour name/month and seeing if the count in query 2 has counted them all
+
+-- Q3
+SELECT (SUM(Payment) / (Select COUNT(*) From Booking)) as averagePaid FROM Booking
+-- By viewing the actual average as a number and not just a condition
+-- We can check that the number is below the threshold for our query check
