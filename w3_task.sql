@@ -48,5 +48,42 @@ ClientID        INT
 ,EventYear      INT CHECK (LEN(EventYear) = 4)
 ,Payment        MONEY CHECK (Payment > 0) NOT NULL
 ,DateBooked     DATE NOT NULL
+,PRIMARY KEY (ClientID, TourName, EventMonth, EventDay, EventYear)
+,FOREIGN KEY (TourName, EventMonth, EventDay, EventYear) REFERENCES Event
+,FOREIGN KEY (ClientID) REFERENCES Client
 );
+
+
+INSERT INTO Tour(TourName, Description)
+VALUES ('North', 'Tour of wineries and outlets of the Bendigo and Castlemaine region')
+,('South', 'Not as extensive of a description')
+,('East', 'East side Vagos')
+,('West', 'West side Ballas');
+
+INSERT INTO Client(ClientID, Surname, GivenName, Gender)
+VALUES (1, 'Price', 'Taylor', 'M')
+,(2, 'Carrel', 'Steve', 'M')
+,(3, 'Watson', 'Emma', 'F')
+,(102145149, 'Docking', 'Hunter', 'M');
+
+
+INSERT INTO Event(TourName, EventMonth, EventDay, EventYear, EventFee)
+VALUES ('North', 'Jan', 9, 2016, 200)
+,('North', 'Dec', 23, 2017, 350)
+,('West', 'Feb', 1, 2016, 80)
+,('South', 'Jul', 30, 2016, 100);
+
+INSERT INTO Booking(ClientID, TourName, EventMonth, EventDay, EventYear, Payment, DateBooked)
+VALUES (1, 'North', 'Jan', 9, 2016, 200, '2015-10-12')
+,(102145149, 'North', 'Jan', 9, 2016, 200, '2015-06-03')
+,(1, 'South', 'Jul', 30, 2016, 100, '2016-05-18')
+,(2, 'South', 'Jul', 30, 2016, 200, '2015-12-01')
+,(2, 'West', 'Feb', 1, 2016, 80, '2015-12-01');
+
+
+
+
+SELECT * FROM Client
+
+
 
