@@ -87,3 +87,32 @@ SELECT * FROM Client
 
 
 
+-- QUERY 1
+SELECT c.GivenName, c.Surname, t.TourName, t.Description, b.EventYear, b.EventMonth, b.EventDay, e.EventFee, b.DateBooked, b.Payment
+FROM Event e
+
+INNER JOIN Tour t
+ON t.TourName = e.TourName
+
+INNER JOIN Booking b
+ON b.EventYear = e.EventYear
+AND b.EventMonth = e.EventMonth
+AND b.EventDay = e.EventDay
+
+INNER JOIN Client c
+ON c.ClientID = b.ClientID
+
+
+
+-- QUERY 2
+SELECT EventMonth, TourName, COUNT(ClientID) AS 'Num Bookings'
+FROM Booking
+
+GROUP BY EventMonth, TourName
+
+
+
+-- QUERY 3
+SELECT * FROM Booking
+WHERE Payment > (SELECT AVG(Payment) FROM Booking);
+
