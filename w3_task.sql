@@ -82,7 +82,6 @@ VALUES (1, 'North', 'Jan', 9, 2016, 200, '2015-10-12')
 
 
 
-
 SELECT * FROM Client
 
 
@@ -116,3 +115,6 @@ GROUP BY EventMonth, TourName
 SELECT * FROM Booking
 WHERE Payment > (SELECT AVG(Payment) FROM Booking);
 
+
+
+SELECT * FROM Q1;
